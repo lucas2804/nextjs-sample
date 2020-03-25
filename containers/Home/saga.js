@@ -5,8 +5,8 @@ import * as apis from './apis';
 
 function* tweetsRequest() {
   try {
-    const { data } = yield call(apis.tweetsRequest);
-    yield put(actions.tweetsSuccess(data));
+    const { tweets } = yield call(apis.tweetsRequest);
+    yield put(actions.tweetsSuccess(tweets));
   } catch (error) {
     yield put(actions.tweetsFail(error));
   }

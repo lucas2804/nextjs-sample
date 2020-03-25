@@ -8,7 +8,7 @@ function reducer(state = initialState, action = {}) {
     case types.TWEETS_SUCCESS:
       return {
         ...state,
-        data: action.data,
+        tweets: action.tweets,
         loadedTweets: true,
       };
     case types.TWEETS_FAIL:

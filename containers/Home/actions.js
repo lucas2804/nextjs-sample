@@ -4,8 +4,8 @@ export function tweetsRequest() {
   return { type: types.TWEETS_REQUEST };
 }
 
-export function tweetsSuccess(data) {
-  return { type: types.TWEETS_SUCCESS, data };
+export function tweetsSuccess(tweets) {
+  return { type: types.TWEETS_SUCCESS, tweets };
 }
 
 export function tweetsFail(error) {
