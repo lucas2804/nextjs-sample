@@ -8,10 +8,7 @@ module.exports = withCSS(
       apiKey: 'secret',
     },
     publicRuntimeConfig: {
-      apiURL:
-        process.env.NODE_ENV === 'production'
-          ? process.env.API_URL
-          : 'http://api-localhost.innogr.am',
+      apiURL: process.env.API_URL,
       homeChannelLimit: 12,
       channelLimit: 48,
     },
