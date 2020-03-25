@@ -1,0 +1,20 @@
+---
+variables:
+  GIT_STRATEGY: fetch
+before_script:
+  - "export ENVIRONMENT=$CI_COMMIT_REF_NAME"
+  - "export STACK_NAME=nextjs-sample"
+stages:
+  - build
+
+build:
+  stage: build
+  tags:
+    - gitlab-runner-aws
+  script:
+    - "echo 'hello'"
+  when: on_success
+  only:
+    - tags
+  cache:
+    untracked: true

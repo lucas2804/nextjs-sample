@@ -1,0 +1,11 @@
+.git
+.eslintrc.js
+.results
+scripts
+*Dockerfile*
+*docker-compose*
+node_modules
+package-lock.json
+.next/
+node_modules/
+Dockerfile

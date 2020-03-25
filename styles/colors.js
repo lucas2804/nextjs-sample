@@ -1,0 +1,9 @@
+export const DEFAULT_TEXT_COLOR = '#686868';
+export const DEFAULT_BACKGROUND_COLOR = 'transparent';
+export const WHITE_COLOR = '#ffffff';
+export const SIDEBAR_COLOR = '#2f4050';
+export const SIDEBAR_LINK_TEXT_COLOR = '#a7b1c2';
+export const DEFAULT_BORDER_COLOR = '#e7eaec';
+export const TEXT_MUTED_COLOR = '#8095a8';
+export const ACTIVE_MENU_ITEM_BORDER = '#19aa8d';
+export const ACTIVE_MENU_ITEM_BG = '#293846';
