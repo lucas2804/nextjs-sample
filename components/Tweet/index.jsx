@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import * as PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
@@ -14,7 +15,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { useStyles } from './style';
 
-export default function Tweet() {
+const Tweet = ({ tweet }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -27,7 +28,7 @@ export default function Tweet() {
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            R
+            {tweet.user.name[0]}
           </Avatar>
         }
         action={
@@ -35,14 +36,12 @@ export default function Tweet() {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title={tweet.user.name}
+        subheader={tweet.updatedAt}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
+          {tweet.content}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -65,17 +64,18 @@ export default function Tweet() {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and
-            set aside for 10 minutes.
-          </Typography>
-          <Typography>
-            Set aside off of the heat to let rest for 10 minutes, and then
-            serve.
-          </Typography>
+          <Typography paragraph>...</Typography>
         </CardContent>
       </Collapse>
     </Card>
   );
-}
+};
+
+Tweet.propTypes = {
+  tweet: PropTypes.shape({
+    user: PropTypes.object,
+    content: PropTypes.string,
+    updatedAt: PropTypes.string,
+  }),
+};
+export default Tweet;

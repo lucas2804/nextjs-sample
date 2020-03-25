@@ -9,16 +9,12 @@ import saga from './saga';
 import * as actions from './actions';
 import Tweet from '../../components/Tweet';
 
-const HomeContainer = ({ tweets, tweetsRequest }) => {
+const HomeContainer = ({ tweets, tweetsRequest, loadedTweets }) => {
   useEffect(() => {
     tweetsRequest();
   }, []);
-
-  const dom = (
-    <div>
-      <Tweet tweets={tweets} />
-    </div>
-  );
+  const tweet = tweets[0];
+  const dom = <div>{loadedTweets && <Tweet tweet={tweet} />}</div>;
   return dom;
 };
 
@@ -27,8 +23,10 @@ HomeContainer.propTypes = {
 };
 
 const mapStateToProps = state => {
-  const { tweets } = state;
-  return { tweets };
+  const {
+    homeTweets: { tweets, loadedTweets },
+  } = state;
+  return { tweets, loadedTweets };
 };
 
 const mapDispatchToProps = {
