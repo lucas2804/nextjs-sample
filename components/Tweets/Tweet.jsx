@@ -26,6 +26,7 @@ const Tweet = ({ tweet }) => {
   return (
     <Card className={classes.root}>
       <CardHeader
+        classes={{ title: classes.title }}
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
             {tweet.user.name[0]}

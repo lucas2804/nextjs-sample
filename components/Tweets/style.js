@@ -5,6 +5,7 @@ export const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: 600,
     margin: 'auto',
+    marginBottom: 10,
   },
   media: {
     height: 0,
@@ -22,5 +23,9 @@ export const useStyles = makeStyles(theme => ({
   },
   avatar: {
     backgroundColor: red[500],
+  },
+  title: {
+    fontWeight: 600,
+    fontSize: 18,
   },
 }));

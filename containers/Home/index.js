@@ -7,14 +7,14 @@ import reducer from './reducer';
 import injectSaga from '../../utils/injectSaga';
 import saga from './saga';
 import * as actions from './actions';
-import Tweet from '../../components/Tweet';
+import Tweets from '../../components/Tweets';
 
 const HomeContainer = ({ tweets, tweetsRequest, loadedTweets }) => {
   useEffect(() => {
     tweetsRequest();
   }, []);
   const tweet = tweets[0];
-  const dom = <div>{loadedTweets && <Tweet tweet={tweet} />}</div>;
+  const dom = <div>{loadedTweets && <Tweets tweets={tweets} />}</div>;
   return dom;
 };
 
