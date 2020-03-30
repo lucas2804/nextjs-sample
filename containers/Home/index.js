@@ -8,13 +8,23 @@ import injectSaga from '../../utils/injectSaga';
 import saga from './saga';
 import * as actions from './actions';
 import Tweets from '../../components/Tweets';
+import UserTweet from '../../components/UserTweet';
 
 const HomeContainer = ({ tweets, tweetsRequest, loadedTweets }) => {
   useEffect(() => {
     tweetsRequest();
   }, []);
   const tweet = tweets[0];
-  const dom = <div>{loadedTweets && <Tweets tweets={tweets} />}</div>;
+  const dom = (
+    <div>
+      {loadedTweets && (
+        <div>
+          <UserTweet tweet={tweet} />
+          <Tweets tweets={tweets} />
+        </div>
+      )}
+    </div>
+  );
   return dom;
 };
 

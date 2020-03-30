@@ -3,13 +3,8 @@ import App from 'next/app';
 import { Provider } from 'react-redux';
 import * as Sentry from '@sentry/browser';
 
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-
 import initializeStore from '../lib/initializeStore';
 import Layout from '../containers/Layout';
-import getPageContext from './_theme';
-
 // Import CSS reset and Global Styles
 import '../styles/global-styles';
 
@@ -40,7 +35,6 @@ if (isServer) {
 class MyApp extends App {
   constructor(props) {
     super(props);
-    this.pageContext = getPageContext();
   }
 
   componentDidMount() {
@@ -67,12 +61,9 @@ class MyApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <Provider store={store}>
-        <MuiThemeProvider theme={this.pageContext.theme}>
-          <CssBaseline />
-          <Layout>
-            <Component pageContext={this.pageContext} {...pageProps} />
-          </Layout>
-        </MuiThemeProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </Provider>
     );
   }

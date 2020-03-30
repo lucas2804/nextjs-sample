@@ -6,14 +6,13 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import Twitter from '@material-ui/icons/Twitter';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { useStyles } from './style';
 
-const Tweet = ({ tweet }) => {
+const UserTweet = ({ tweet }) => {
   const classes = useStyles();
 
   return (
@@ -21,10 +20,8 @@ const Tweet = ({ tweet }) => {
       <CardHeader
         classes={{ title: classes.title }}
         avatar={
-          <Avatar aria-label="recipe" style={{ backgroundColor: '#fff' }}>
-            <IconButton aria-label="add to favorites">
-              <Twitter style={{ color: '#1CA1F2' }} fontSize="large" />
-            </IconButton>
+          <Avatar aria-label="recipe" className={classes.avatar}>
+            {tweet.user.name[0]}
           </Avatar>
         }
         action={
@@ -36,9 +33,9 @@ const Tweet = ({ tweet }) => {
         subheader={tweet.updatedAt}
       />
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {tweet.content}
-        </Typography>
+        <form className={classes.root} noValidate autoComplete="off">
+          <TextField fullWidth label="What's happening?" rowsMax="4" multiline />
+        </form>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
@@ -52,11 +49,11 @@ const Tweet = ({ tweet }) => {
   );
 };
 
-Tweet.propTypes = {
+UserTweet.propTypes = {
   tweet: PropTypes.shape({
     user: PropTypes.object,
     content: PropTypes.string,
     updatedAt: PropTypes.string,
   }),
 };
-export default Tweet;
+export default UserTweet;

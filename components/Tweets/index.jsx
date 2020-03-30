@@ -3,7 +3,10 @@ import * as PropTypes from 'prop-types';
 import Tweet from './Tweet';
 
 const Tweets = ({ tweets }) => (
-  <div>{tweets.length > 0 && tweets.map(tweet => <Tweet tweet={tweet} />)}</div>
+  <div>
+    {tweets.length > 0 &&
+      tweets.map(tweet => <Tweet tweet={tweet} key={tweet.id} />)}
+  </div>
 );
 Tweets.propTypes = {
   tweet: PropTypes.shape({
