@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -13,8 +13,13 @@ import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { useStyles } from './style';
 
-const Tweet = ({ tweet }) => {
+const Tweet = props => {
   const classes = useStyles();
+  const { tweet } = props;
+
+  const handleClickRetweet = () => {
+    props.handleClickRetweet(tweet.id);
+  };
 
   return (
     <Card className={classes.root}>
@@ -44,8 +49,9 @@ const Tweet = ({ tweet }) => {
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
-        <IconButton aria-label="share">
+        <IconButton onClick={handleClickRetweet} aria-label="share">
           <ShareIcon />
+          {tweet.numberOfRetweet}
         </IconButton>
       </CardActions>
     </Card>
@@ -58,5 +64,6 @@ Tweet.propTypes = {
     content: PropTypes.string,
     updatedAt: PropTypes.string,
   }),
+  handleClickRetweet: PropTypes.func,
 };
 export default Tweet;

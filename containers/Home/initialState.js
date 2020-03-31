@@ -1,5 +1,6 @@
 const initialState = {
   tweets: [{}],
+  createdTweet: null,
   loadedTweets: false,
 };
 

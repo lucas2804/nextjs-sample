@@ -9,18 +9,36 @@ import saga from './saga';
 import * as actions from './actions';
 import Tweets from '../../components/Tweets';
 import UserTweet from '../../components/UserTweet';
+import Tweet from '../../components/Tweets/Tweet';
 
-const HomeContainer = ({ tweets, tweetsRequest, loadedTweets }) => {
+const HomeContainer = ({
+  tweets,
+  createdTweet,
+  tweetsRequest,
+  loadedTweets,
+  createTweetRequest,
+  retweetRequest,
+}) => {
   useEffect(() => {
     tweetsRequest();
   }, []);
+
+  const handleSubmitTweet = content => {
+    createTweetRequest(content);
+  };
+  const handleClickRetweet = tweetId => {
+    retweetRequest(tweetId);
+  };
   const tweet = tweets[0];
   const dom = (
     <div>
       {loadedTweets && (
         <div>
-          <UserTweet tweet={tweet} />
-          <Tweets tweets={tweets} />
+          <UserTweet tweet={tweet} handleSubmitTweet={handleSubmitTweet} />
+          {createdTweet && (
+            <Tweet tweet={createdTweet} />
+          )}
+          <Tweets tweets={tweets} handleClickRetweet={handleClickRetweet} />
         </div>
       )}
     </div>
@@ -34,13 +52,15 @@ HomeContainer.propTypes = {
 
 const mapStateToProps = state => {
   const {
-    homeTweets: { tweets, loadedTweets },
+    homeTweets: { tweets, loadedTweets, createdTweet },
   } = state;
-  return { tweets, loadedTweets };
+  return { tweets, loadedTweets, createdTweet };
 };
 
 const mapDispatchToProps = {
   tweetsRequest: actions.tweetsRequest,
+  createTweetRequest: actions.createTweetRequest,
+  retweetRequest: actions.retweetRequest,
 };
 
 const withReducer = injectReducer({ key: 'homeTweets', reducer });

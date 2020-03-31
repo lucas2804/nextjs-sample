@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -10,13 +10,26 @@ import TextField from '@material-ui/core/TextField';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Button from '@material-ui/core/Button';
 import { useStyles } from './style';
 
-const UserTweet = ({ tweet }) => {
+const UserTweet = props => {
   const classes = useStyles();
+  const [content, setContent] = useState('');
+  const { tweet } = props;
+
+  const resetForm = () => {
+    setContent('');
+  };
+
+  const handleSubmitTweet = e => {
+    e.preventDefault();
+    props.handleSubmitTweet(content);
+    resetForm();
+  };
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} style={{marginBottom: 40}}>
       <CardHeader
         classes={{ title: classes.title }}
         avatar={
@@ -34,16 +47,29 @@ const UserTweet = ({ tweet }) => {
       />
       <CardContent>
         <form className={classes.root} noValidate autoComplete="off">
-          <TextField fullWidth label="What's happening?" rowsMax="4" multiline />
+          <TextField
+            fullWidth
+            label="What's happening?"
+            rowsMax="4"
+            multiline
+            value={content}
+            onChange={e => setContent(e.target.value)}
+          />
         </form>
       </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
+      <CardActions disableSpacing style={{ float: 'right', marginBottom: 10 }}>
+        <Button
+          style={{
+            color: '#fff',
+            backgroundColor: '#1CA1F2',
+          }}
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          onClick={handleSubmitTweet}
+        >
+          Tweet
+        </Button>
       </CardActions>
     </Card>
   );
@@ -55,5 +81,6 @@ UserTweet.propTypes = {
     content: PropTypes.string,
     updatedAt: PropTypes.string,
   }),
+  handleSubmitTweet: PropTypes.func,
 };
 export default UserTweet;
