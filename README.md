@@ -1,5 +1,7 @@
 ## Rails Sample Restful
 
+- Current production url: **http://35.201.233.96/**
+
 ### I - Tech stack
 
 ```
