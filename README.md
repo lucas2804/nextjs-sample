@@ -1,5 +1,7 @@
 ## Rails Sample Restful
 
+### I - Tech stack
+
 ```
 - Deploy by docker images to Kubernetes
 - Deploy to Kubernetes with templates from **auto_deploy_kubernetes/api_ingress.json**
